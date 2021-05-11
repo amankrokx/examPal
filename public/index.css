@@ -1,8 +1,104 @@
-body { height: 100vh; width: 100vw; background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-header {display: block; width: 100%;}
-header div.top { background: #039be5; width: 100vw; height: 24px; padding: 10px 10px; }
-header div.bottom { background: white; width: 100vw; height: 24px; padding: 16px 12px; }
-#message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+:root {
+  --ab: #039be5;
+  --ao: #ffa100;
+  --bg: #ECEFF1;
+  --ptc: #202124;
+  --stc: #4e5257;
+  --ttc: #bdc1c6;
+  --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --tbshadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Medium.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Bold.ttf);
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Medium.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Bold.ttf);
+  font-weight: bolder;
+}
+
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/material-icons.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.hidden {display: none;}
+.fr { float: right;}
+
+html {height: 100vh; width: 100vw;}
+body { height: 100vh; width: 100vw; background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+header div.top { position: fixed; top: 0; left: 0;background: white; width: 100vw; height: 48px; padding: 6px 24px; }
+header div div {height: 36px; padding: 6px 16px; font-size: 18px;}
+header div.bottom { position: fixed; top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
+
+#art {
+  position: fixed;
+  top: calc(98px + ((100vh - 778px)/2));
+  right: calc(50vw - 350px);
+  transform: rotate(-25deg);
+  filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3)) opacity(0.5);
+  z-index: 1;
+}
+
+/*  
+inside headers
+border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+    greyed text box #f1f3f4
+    greyed hover text box #e8eaed
+    */
+
+/*#message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
 #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
 #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
 #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
@@ -11,4 +107,108 @@ header div.bottom { background: white; width: 100vw; height: 24px; padding: 16px
 @media (max-width: 600px) {
   body, #message { margin-top: 0; background: white; box-shadow: none; }
   body { border-top: 16px solid #ffa100; }
+}*/
+
+#main {
+  width: 280px;
+  height: auto;
+  background: #ffffff;
+  position: fixed;
+  top: calc(98px + ((100vh - 628px)/2));
+  right: calc((100vh - 628px)/2);
+  transition: height 0.5s ease-in-out;
+  overflow-y: hidden;
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+#main h1 {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-weight: bolder;
+}
+
+#main div.login form {
+  width: 240px;
+}
+
+label {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #999999;
+  margin-left: 10px;
+  float: left;
+}
+
+input {
+  font-size: 0.9em;
+  padding-left: 8px;
+  display: block;
+  position: relative;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--stc);
+  width: 220px;
+  outline: none;
+  background-color: #f1f3f4;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  font-family: Roboto, sans-serif;
+}
+
+input:focus {
+  background-color: white;
+  box-shadow: var(--tbshadow);
+  color: var(--ptc);
+}
+input:hover {
+  background-color: #e8eaed;
+  color: var(--ptc);
+}
+
+input::placeholder {
+  color: var(--ttc);
+}
+
+input.submit,
+input.sendOTP {
+  color: white;
+  background: var(--ab);
+  box-shadow: var(--shadow);
+  /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
+}
+
+form span.forget {
+  float: right;
+  color: #aaaaaa;
+  margin-top: 8px;
+  font-size: 0.7em;
+}
+
+div.login span.alt,
+div.login span.toggle {
+  position: relative;
+  font-size: 0.8em;
+  color: #999999;
+  bottom: 15px;
+  background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+div.imgs {
+  position: relative;
+  top: 5px;
+  height: 45px;
+  width: 145px;
+}
+
+div.imgs img {
+  display: inline;
+  height: 40px;
+  width: 40px;
+  margin: 2.5px;
 }

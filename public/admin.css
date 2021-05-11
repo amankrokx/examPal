@@ -68,7 +68,7 @@ nav .nav_list a:hover{
 /* Bordered form */
 form {
     border: 3px solid whitesmoke;
-    width: 60%;
+    width: 55%;
     float: right;
     align-content: center;
   }

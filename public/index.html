@@ -16,12 +16,16 @@
   
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>-->
     <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js" ></script>
   </head>
   <body>
     <header>
       <div class="top" >
         <div class="login fr" style="color: #1a73e8;">Login</div>
         <div class="language fr" style="border: 1px solid #dadce0; border-radius: 4px;"><span>English </span><span class="material-icons">arrow_drop_down</span></div>
+        <div class="search fr"><span class="material-icons" style="padding-left: 6px;">search</span><input type="text" placeholder="Search"/></div>
+        <img src="./media/icon.png" style="height: 36px;" />
+        <span style="display: inline; font-size: 24px; top: -8px; position: relative; margin-left: 8px;">ExamPal</span>
       </div>
       <div class="bottom"></div>
     </header>
@@ -77,12 +81,29 @@
                     <img async src="./media/google.png" loading="lazy" class="google">
                 </div>
                 <br /><br /><br /><br />
-                <span class="toggle" id="toggle">Or Signup with Email</span>
+                <span class="toggle" id="toggle">Signup with Email</span>
 
             </div>
         </div>
     </center>
     </div>
+    <div class="container">
+      <div class="welcome" style="font-size: 40px;font-variant: small-caps;color: var(--ao);">ChillaX , Let's get started !</div>
+      <div class="quotes" style="padding: 0 24px 32px 12px;color: var(--stc);text-shadow: var(--shadow);backdrop-filter: blur(2px);border-radius: 4px;background: rgba(255,255,255,0.4);margin-top: 32px;">
+        <span class="material-icons" style="font-size: 60px;color: black;">format_quote</span><span class="quote" style="vertical-align: bottom;font-size: 28px;">Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will spend its whole life believing that it is stupid.</span>
+        <br>
+        <span class="author" style="float: right;color: var(--ao);">– Albert Einstein</span>
+      </div>
+    </div>
+
     <img id="art" src="./media/exam_2.png" />
+
+    <div style="width: 0;height: 0;border-bottom: 220px solid var(--ab);border-right: 220px solid transparent;position: absolute;bottom: 0;"></div>
+    <footer style="position: absolute;bottom: 0;left: 0;height: 144px;">
+      <span>About</span>
+      <span>Site Map</span>
+      <span>Contact Us</span>
+      <span>Copyright 2021</span>
+    </footer>
   </body>
 </html>

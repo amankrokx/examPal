@@ -1,6 +1,5 @@
 window.onload = () => {
-    tl = document.getElementById('loader')
-    ht()
+
     let items = document.getElementsByTagName('form')
     toggle.onclick = () => {
         items[0].classList.toggle('hidden')

@@ -21,15 +21,15 @@
   <body>
     <header>
       <div class="top" >
-        <div class="login fr" style="color: #1a73e8;">Login</div>
-        <div class="language fr" style="border: 1px solid #dadce0; border-radius: 4px;"><span>English </span><span class="material-icons">arrow_drop_down</span></div>
-        <div class="search fr"><span class="material-icons" style="padding-left: 6px;">search</span><input type="text" placeholder="Search"/></div>
+        <div class="login fr" style="color: #1a73e8;" onclick="showLogin()">Login</div>
+        <div class="language fr" style="border: 1px solid #dadce0; border-radius: 4px;"><div class="desktop">English </span><span class="material-icons">arrow_drop_down</span></div><div class="mobile">En</div></div>
+        <div class="search fr"><span class="material-icons">search</span><input type="text" placeholder="Search"/></div>
         <img src="./media/icon.png" style="height: 36px;" />
         <span style="display: inline; font-size: 24px; top: -8px; position: relative; margin-left: 8px;">ExamPal</span>
       </div>
       <div class="bottom"></div>
     </header>
-    <div id="login" >
+    <div id="login" class="hidden" >
       <center>
         <div id="main">
             <div class="login">
@@ -89,7 +89,7 @@
     </div>
     <div class="container">
       <div class="welcome" style="font-size: 40px;font-variant: small-caps;color: var(--ao);">ChillaX , Let's get started !</div>
-      <div class="quotes" style="padding: 0 24px 32px 12px;color: var(--stc);text-shadow: var(--shadow);backdrop-filter: blur(2px);border-radius: 4px;background: rgba(255,255,255,0.4);margin-top: 32px;">
+      <div class="quotes">
         <span class="material-icons" style="font-size: 60px;color: black;">format_quote</span><span class="quote" style="vertical-align: bottom;font-size: 28px;">Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will spend its whole life believing that it is stupid.</span>
         <br>
         <span class="author" style="float: right;color: var(--ao);">– Albert Einstein</span>
@@ -102,7 +102,7 @@
     <footer style="position: fixed;bottom: 0;left: 0;height: 144px; z-index: 6;">
       <span>About</span>
       <span>Site Map</span>
-      <span>Contact Us</span>
+      <span onclick="window.location = './contact.html'">Contact Us</span>
       <span>Copyright 2021</span>
     </footer>
   </body>

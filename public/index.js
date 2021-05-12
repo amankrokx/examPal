@@ -1,3 +1,5 @@
+let showLogin
+
 window.onload = () => {
 
     let items = document.getElementsByTagName('form')
@@ -11,6 +13,12 @@ window.onload = () => {
             items[3].classList.toggle('hidden')
         }
     });
+
+    showLogin = () => {
+      if(document.querySelector('#login').classList.contains('hidden')) {
+        document.querySelector('#login').classList.remove('hidden')
+      } else {document.querySelector('#login').classList.add('hidden')}
+    }
 
     /*
     const loadEl = document.querySelector('#load');

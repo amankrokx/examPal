@@ -80,8 +80,59 @@
 .hidden {display: none;}
 .fr { float: right;}
 
+header {position: fixed;z-index: 4;}
+header div.top {top: 0; left: 0;background: white; width: 100vw; height: 48px; }
+header div div {height: 36px; padding: 6px 16px; font-size: 18px;}
+header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
+
+div.quotes {
+  padding: 0 24px 32px 12px;
+  color: var(--stc);
+  text-shadow: var(--shadow);
+  backdrop-filter: blur(2px);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.4);
+  margin-top: 32px;
+}
+
+/* ################ START OF MOBILE DISPLAY ################## */
+
 @media only screen and (max-width: 770px) {
   body { background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+
+  header div div {margin: 0; }
+  header div.top {padding: 6px 12px;}
+
+  div.language {
+    width: 36px;
+    padding: 6px;
+  }
+
+  header div.top div.search {
+    width: 36px;
+    right: 143px;
+    padding: 0 6px;
+  }
+
+  header div.top div.search span {
+    padding: 6px 0;
+  }
+  
+  div.search input {
+    display: none;
+  }
+  
+  header div.top div.search:hover {
+    background-color: white;
+    box-shadow: var(--tbshadow);
+    color: var(--ptc);
+    width: calc(100vw - 36px);
+    right: 18px;
+  }
+
+  header div.top div.search:hover input {
+    display: inline;
+  }
 
   #art {
     position: fixed;
@@ -94,7 +145,21 @@
     margin-right: auto;
   }
 
-  #login {display: none;}
+  div.container {
+    position: absolute;
+    top: 118px;
+    left: 20px;
+    width: calc(100vw - 40px);
+    z-index: 2;
+  }
+  div.quotes {margin-top: 10px;}
+
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: contents;
+  }
 
   #main {
     width: 280px;
@@ -196,30 +261,41 @@
     margin: 2.5px;
   }
 }
+/* ################ END OF MOBILE DISPLAY ################## */
 
-header {position: fixed;z-index: 4;}
-header div.top {top: 0; left: 0;background: white; width: 100vw; height: 48px; padding: 6px 24px; }
-header div div {height: 36px; padding: 6px 16px; font-size: 18px; margin-right: 20px;}
-header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
+
+/* ################# START OF DESKTOP DISPLAY ################ */
 
 @media only screen and (min-width: 770px) and (min-height: 360px) {
   body { min-width: 800px; min-height: 630px; background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
 
+  header div div { margin-right: 20px;}
+  header div.top {padding: 6px 24px;}
   header div.top div.search {
-    width: 266px;
-    padding: 0;
-    background-color: var(--bgb);
-    transition: var(--trans);
-    border-radius: 4px;
+    right: 262px;
   }
-
   div.search input {
     display: inline;
-    height: 36px;
-    text-indent: 8px;
-    background: none;
-    transition: none;
   }
+
+  header div.top div.search {
+    padding: 0;
+    width: 266px;
+  }
+
+  header div.top div.search span {padding-left: 6px;}
+
+  header div.top div.search:hover {
+    background-color: var(--bgh);
+    color: var(--ptc);
+  }
+
+  header div.top div.search:focus-within {
+    width: calc(100vw - 370px);
+  }
+
+  .mobile {display: none;}
+  .desktop {display: contents;}
 
   div.top div.login {transition: var(--trans);}
 
@@ -228,16 +304,7 @@ header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; heig
     box-shadow: var(--tbshadow);
   }
 
-  header div.top div.search:hover {
-    background-color: var(--bgh);
-    color: var(--ptc);
-  }
-  header div.top div.search:focus-within {
-    background-color: white;
-    box-shadow: var(--tbshadow);
-    color: var(--ptc);
-    width: 500px;
-  }
+
   #art {
     position: fixed;
     top: calc(168px + ((100vh - 778px)/2));
@@ -377,6 +444,27 @@ header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; heig
     margin: 2.5px;
   }
 
+}
+
+header div.top div.search {
+  position: fixed;
+  background-color: var(--bgb);
+  transition: var(--trans);
+  border-radius: 4px;
+  z-index: 7;
+}
+
+div.search input {
+  height: 36px;
+  text-indent: 8px;
+  background: none;
+  transition: none;
+}
+
+header div.top div.search:focus-within {
+  background-color: white;
+  box-shadow: var(--tbshadow);
+  color: var(--ptc);
 }
 
 footer span {

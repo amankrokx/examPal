@@ -1,17 +1,56 @@
-* {
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Medium.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: google-sans;
+  src: url(./assets/ProductSans-Bold.ttf);
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Medium.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/Roboto-Bold.ttf);
+  font-weight: bolder;
+}
+
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/material-icons.woff2) format('woff2');
+}
+{
     padding: 0;
     margin: 0;
 }
 
 body{
-    background-color: azure;
+    background-color: #ECEFF1;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 nav{
-    background-color:blue;
+    background-color:#039be5;
     height: 80px;
 }
 
@@ -24,9 +63,9 @@ nav .nav_text{
     align-content:center;
     font-stretch: ultra-expanded;
     text-decoration: black;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: google-sans;
     font-size: 40px;
-    font-weight: bold;
+    font-weight: bolder;
     color: whitesmoke;
     border-radius: 10px;
     border-color: whitesmoke;
@@ -48,13 +87,13 @@ nav .nav_list{
 
 nav .nav_list a{
     text-decoration: none;
-    color:blue;
+    color:#202124;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     margin: 20px; 
     padding: 10px;
     border-radius: 10px;
-    background-color: blanchedalmond;
+    background-color: #ECEFF1;
     display: block;
     transition: 0.5s;
 }
@@ -71,6 +110,7 @@ form {
     width: 55%;
     float: right;
     align-content: center;
+    display: none;
   }
   
   input[type=text], input[type=password] {
@@ -83,7 +123,7 @@ form {
   }
  
   button {
-    background-color: blue;
+    background-color: #039be5;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -130,3 +170,130 @@ form {
       width: 100%;
     }
   }
+
+  #part{
+    display:flex;
+  }
+
+  .sidebar{
+    text-decoration: none;
+    color:#039be5;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 20px; 
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #039be5;
+    transition: 0.5s;
+    height: 590px;
+    width: 160px;
+  }
+
+  .sidebar button{
+    padding: 10px;;
+    margin:10px ;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 120px;
+    height:max-content;
+    text-decoration: none;
+    color:#202124;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color:#ECEFF1;
+    display: block;
+    transition: 0.5s;
+    float: left;
+  }
+
+  .sidebar button:hover{
+    box-shadow:  2px 3px 5px black, 2px 3px 5px black;
+    transform: scale(0.9);
+    transition: 0.5s;
+  }
+  
+  #demo {
+
+  }
+
+  #question{
+    border-radius: 20px;
+  }
+
+  .demo_que{
+    height: 230px;
+    text-decoration: none;
+    color:#202124;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px; 
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #039be5;
+    float: none;
+  }
+
+  .demo_ans{
+    height: 285px;
+    text-decoration: none;
+    color:#202124;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px; 
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #039be5;
+    float: none;
+  }
+
+  #table_opt{
+    display: flex;
+  }
+
+  .table_left{
+    margin: 30px;
+    margin-top: 10px;
+    margin-right: 80px;
+    padding: 10px;
+  }
+
+  .table_right{
+    margin: 30px;
+    margin-top: 10px;
+    margin-left: 120px;
+    padding: 10px;
+  }
+
+  .demo_ans button{
+    padding: 10px;;
+    margin:10px ;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 50px;
+    shape-margin: 50px;
+    height:50px;
+    text-decoration: none;
+    color:#202124;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border-radius: 50px;
+    background-color:#ECEFF1;
+    display: block;
+    transition: 0.2s;
+    float: left;
+  }
+
+  .demo_ans button:hover{
+    box-shadow:  2px 3px 5px black, 2px 3px 5px black;
+    transform: scale(0.9);
+    transition: 0.2s;
+  }
+
+  #option{
+    border-radius: 20px;
+  }
+
+

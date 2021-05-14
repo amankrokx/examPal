@@ -570,9 +570,9 @@
 
                 <span class="alt">Or Continue Using</span>
                 <div class="imgs">
-                    <img async src="./media/fb.png" loading="lazy" class="fb">
-                    <img async src="./media/twitter.png" loading="lazy" class="twitter">
-                    <img async src="./media/google.png" loading="lazy" class="google">
+                    <img async src="./media/fb.png" loading="lazy" class="fb" onclick="facebookLogin()">
+                    <img async src="./media/twitter.png" loading="lazy" class="twitter" onclick="twitterLogin()">
+                    <img async src="./media/google.png" loading="lazy" class="google" onclick="googleLogin()">
                 </div>
                 <br /><br /><br /><br />
                 <span class="toggle" id="toggle">Signup with Email</span>
@@ -614,6 +614,7 @@
               // User is signed in.
               console.log(user)
               if (user.uid.length > 0) {
+                  alert('Logged in !')
                   //window.location = './home.html'               // Disabled for production
                   //st()
               } else {document.querySelector('#login').classList.remove('hidden')}
@@ -749,7 +750,7 @@
       //Facebook Auth
       let Fprovider = new firebase.auth.FacebookAuthProvider();
 
-      function FaceboolLogin() {
+      function facebookLogin() {
 
         firebase
           .auth()
@@ -777,6 +778,37 @@
   
             // ...
           });
+      }
+
+      var Tprovider = new firebase.auth.TwitterAuthProvider();
+
+      function twitterLogin() {
+        firebase
+          .auth()
+          .signInWithPopup(Tprovider)
+          .then((result) => {
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
+
+            // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+            // You can use these server side with your app's credentials to access the Twitter API.
+            var token = credential.accessToken;
+            var secret = credential.secret;
+
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+          }).catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+          });
+
       }
 
       function logout() {

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "khareedoye"
+    "exampal": "exampal-84be3",
+    "default": "exampal-84be3"
   }
 }

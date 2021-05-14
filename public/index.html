@@ -4,19 +4,513 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to ExamPal !</title>
+    <style>
+      :root {
+        --ab: #039be5;
+        --ao: #ffa100;
+        --bg: #ECEFF1;
+        --bgb: #f1f3f4;
+        --bgh: #e8eaed;
+        --ptc: #202124;
+        --stc: #4e5257;
+        --ttc: #bdc1c6;
+        --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        --tbshadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+        --trans: width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Regular.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Medium.ttf);
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Bold.ttf);
+        font-weight: bolder;
+      }
+      
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Regular.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Medium.ttf);
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Bold.ttf);
+        font-weight: bolder;
+      }
+      
+      /* fallback */
+      @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(./assets/material-icons.woff2) format('woff2');
+      }
+      
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+        vertical-align: middle;
+      }
+      
+      .hidden {display: none;}
+      .fr { float: right;}
+      
+      header {position: fixed;z-index: 4;}
+      header div.top {top: 0; left: 0;background: white; width: 100vw; height: 48px; }
+      header div div {height: 36px; padding: 6px 16px; font-size: 18px;}
+      header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
+      
+      div.quotes {
+        padding: 0 24px 32px 12px;
+        color: var(--stc);
+        text-shadow: var(--shadow);
+        backdrop-filter: blur(2px);
+        border-radius: 4px;
+        background: rgba(255,255,255,0.4);
+        margin-top: 32px;
+      }
+      
+      /* ################ START OF MOBILE DISPLAY ################## */
+      
+      @media only screen and (max-width: 770px) {
+        body { background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+      
+        header div div {margin: 0; }
+        header div.top {padding: 6px 12px;}
+      
+        div.language {
+          width: 36px;
+          padding: 6px;
+        }
+      
+        header div.top div.search {
+          width: 36px;
+          right: 143px;
+          padding: 0 6px;
+        }
+      
+        header div.top div.search span {
+          padding: 6px 0;
+        }
+        
+        div.search input {
+          display: none;
+        }
+        
+        header div.top div.search:hover {
+          background-color: white;
+          box-shadow: var(--tbshadow);
+          color: var(--ptc);
+          width: calc(100vw - 36px);
+          right: 18px;
+        }
+      
+        header div.top div.search:hover input {
+          display: inline;
+        }
+      
+        #art {
+          position: fixed;
+          top: calc(50vh - 256px);
+          transform: rotate(-25deg);
+          filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3)) opacity(0.5);
+          z-index: 1;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      
+        div.container {
+          position: absolute;
+          top: 118px;
+          left: 20px;
+          width: calc(100vw - 40px);
+          z-index: 2;
+        }
+        div.quotes {margin-top: 10px;}
+      
+        .desktop {
+          display: none;
+        }
+        .mobile {
+          display: contents;
+        }
+      
+        #main {
+          width: 280px;
+          height: auto;
+          background: #ffffff;
+          position: fixed;
+          top: calc((100vh - 532px)/2);
+          left: calc(50vw - 140px);
+          transition: height 0.5s ease-in-out;
+          overflow-y: hidden;
+          box-shadow: var(--shadow);
+          border-radius: 4px;
+          z-index: 7;
+        }
+      
+        #main h1 {
+          margin-top: 40px;
+          margin-bottom: 30px;
+          font-weight: bolder;
+        }
+      
+        #main div.login form {
+          width: 240px;
+        }
+      
+        label {
+          display: block;
+          font-size: 0.8em;
+          font-weight: 300;
+          color: #999999;
+          margin-left: 10px;
+          float: left;
+        }
+      
+        input {
+          font-size: 0.9em;
+          padding-left: 8px;
+          display: block;
+          position: relative;
+          height: 40px;
+          border: 0;
+          border-radius: 4px;
+          color: var(--stc);
+          width: 220px;
+          outline: none;
+          background-color: var(--bgb);
+          transition: var(--trans);
+          font-family: Roboto, sans-serif;
+        }
+      
+        #main input:focus {
+          background-color: white;
+          box-shadow: var(--tbshadow);
+          color: var(--ptc);
+        }
+        #main input:hover {
+          background-color: var(--bgh);
+          color: var(--ptc);
+        }
+      
+        input::placeholder {
+          color: var(--ttc);
+        }
+      
+        input.submit,
+        input.sendOTP {
+          color: white;
+          background: var(--ab);
+          box-shadow: var(--shadow);
+          /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
+        }
+      
+        form span.forget {
+          float: right;
+          color: #aaaaaa;
+          margin-top: 8px;
+          font-size: 0.7em;
+        }
+      
+        div.login span.alt,
+        div.login span.toggle {
+          position: relative;
+          font-size: 0.8em;
+          color: var(--ao);
+          bottom: 15px;
+        }
+      
+        div.imgs {
+          position: relative;
+          top: 5px;
+          height: 45px;
+          width: 145px;
+        }
+      
+        div.imgs img {
+          display: inline;
+          height: 40px;
+          width: 40px;
+          margin: 2.5px;
+        }
+      }
+      /* ################ END OF MOBILE DISPLAY ################## */
+      
+      
+      /* ################# START OF DESKTOP DISPLAY ################ */
+      
+      @media only screen and (min-width: 770px) and (min-height: 360px) {
+        body { min-width: 800px; min-height: 630px; background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+      
+        header div div { margin-right: 20px;}
+        header div.top {padding: 6px 24px;}
+        header div.top div.search {
+          right: 262px;
+        }
+        div.search input {
+          display: inline;
+        }
+      
+        header div.top div.search {
+          padding: 0;
+          width: 266px;
+        }
+      
+        header div.top div.search span {padding-left: 6px;}
+      
+        header div.top div.search:hover {
+          background-color: var(--bgh);
+          color: var(--ptc);
+        }
+      
+        header div.top div.search:focus-within {
+          width: calc(100vw - 370px);
+        }
+      
+        .mobile {display: none;}
+        .desktop {display: contents;}
+      
+        div.top div.login {transition: var(--trans);}
+      
+        div.top div.login:hover {
+          background-color: #e8f0fe;
+          box-shadow: var(--tbshadow);
+        }
+      
+      
+        #art {
+          position: fixed;
+          top: calc(168px + ((100vh - 778px)/2));
+          right: calc(280px + ((100vh - 778px)/2));
+          transform: rotate(-25deg);
+          filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3)) opacity(0.5);
+          z-index: 1;
+        }
+      
+        div.container {
+          position: absolute;
+          top: 156px;
+          left: 50px;
+          width: calc(100vw - 100vh + 254px);
+          max-width: calc(100vw - 412px);
+          min-width: 400px;
+          z-index: 2;
+        }
+      
+      
+        /*  
+        inside headers
+        border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+            greyed text box #f1f3f4
+            greyed hover text box #e8eaed
+            */
+      
+        /*#message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+        #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+        #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+        #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+        #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+        #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+        @media (max-width: 600px) {
+          body, #message { margin-top: 0; background: white; box-shadow: none; }
+          body { border-top: 16px solid #ffa100; }
+        }*/
+      
+        #main {
+          width: 280px;
+          height: auto;
+          background: #ffffff;
+          position: absolute;
+          top: 154px;
+          right: 32px;
+          transition: height 0.5s ease-in-out;
+          overflow-y: hidden;
+          box-shadow: var(--shadow);
+          border-radius: 4px;
+          z-index: 2;
+        }
+      
+        #main h1 {
+          margin-top: 40px;
+          margin-bottom: 30px;
+          font-weight: bolder;
+        }
+      
+        #main div.login form {
+          width: 240px;
+        }
+      
+        label {
+          display: block;
+          font-size: 0.8em;
+          font-weight: 300;
+          color: #999999;
+          margin-left: 10px;
+          float: left;
+        }
+      
+        input {
+          font-size: 0.9em;
+          padding-left: 8px;
+          display: block;
+          position: relative;
+          height: 40px;
+          border: 0;
+          border-radius: 4px;
+          color: var(--stc);
+          width: 220px;
+          outline: none;
+          background-color: var(--bgb);
+          transition: var(--trans);
+          font-family: Roboto, sans-serif;
+        }
+      
+        #main input:focus {
+          background-color: white;
+          box-shadow: var(--tbshadow);
+          color: var(--ptc);
+        }
+        #main input:hover {
+          background-color: var(--bgh);
+          color: var(--ptc);
+        }
+      
+        input::placeholder {
+          color: var(--ttc);
+        }
+      
+        input.submit,
+        input.sendOTP {
+          color: white;
+          background: var(--ab);
+          box-shadow: var(--shadow);
+          /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
+        }
+      
+        form span.forget {
+          float: right;
+          color: #aaaaaa;
+          margin-top: 8px;
+          font-size: 0.7em;
+        }
+      
+        div.login span.alt,
+        div.login span.toggle {
+          position: relative;
+          font-size: 0.8em;
+          color: var(--ao);
+          bottom: 15px;
+        }
+      
+        div.imgs {
+          position: relative;
+          top: 5px;
+          height: 45px;
+          width: 145px;
+        }
+      
+        div.imgs img {
+          display: inline;
+          height: 40px;
+          width: 40px;
+          margin: 2.5px;
+        }
+      
+      }
+      
+      header div.top div.search {
+        position: fixed;
+        background-color: var(--bgb);
+        transition: var(--trans);
+        border-radius: 4px;
+        z-index: 7;
+      }
+      
+      div.search input {
+        height: 36px;
+        text-indent: 8px;
+        background: none;
+        transition: none;
+      }
+      
+      header div.top div.search:focus-within {
+        background-color: white;
+        box-shadow: var(--tbshadow);
+        color: var(--ptc);
+      }
+      
+      footer span {
+        display: block;
+        height: 36px;
+        padding: 8px 8px 8px 18px;
+        color: var(--ttc);
+        text-shadow: none;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+      }
+      
+      footer span:hover {
+        color: white;
+        text-shadow: var(--shadow);
+      }
+    </style>
+    <script>
+      let showLogin
+      window.onload = () => {
 
-    <!-- update the version number as needed 
-    <script defer src="/__/firebase/8.5.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need 
-    <script defer src="/__/firebase/8.5.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.5.0/firebase-database.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-  
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>-->
-    <link rel="stylesheet" href="./index.css" />
-    <script src="./index.js" ></script>
+          let items = document.getElementsByTagName('form')
+          toggle.onclick = () => {
+              items[0].classList.toggle('hidden')
+              items[1].classList.toggle('hidden')
+          }
+          document.querySelectorAll('form span.toggle').forEach(e => {
+              e.onclick = () => {
+                  items[1].classList.toggle('hidden')
+                  items[3].classList.toggle('hidden')
+              }
+          });
+
+          showLogin = () => {
+            if(document.querySelector('#login').classList.contains('hidden')) {
+              document.querySelector('#login').classList.remove('hidden')
+            } else {document.querySelector('#login').classList.add('hidden')}
+          }
+        }
+    </script>
   </head>
   <body>
     <header>
@@ -105,5 +599,13 @@
       <span onclick="window.location = './contact.html'">Contact Us</span>
       <span>Copyright 2021</span>
     </footer>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.6.1/firebase-app.js"></script>
+
+
+    <!-- Initialize Firebase -->
+    <script defer src="/__/firebase/init.js"></script>
   </body>
 </html>

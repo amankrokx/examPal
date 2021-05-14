@@ -1,20 +1,20 @@
 {
   "name": "exampal",
-  "version": "0.0.1",
-  "description": "Online portal for conducting online exams",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "firebase-tools": "^9.10.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amankrokx/exampal.git"
   },
-  "author": "amankrokx",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amankrokx/exampal/issues"

@@ -92,16 +92,6 @@
       header div div {height: 36px; padding: 6px 16px; font-size: 18px;}
       header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
       
-      div.quotes {
-        padding: 0 24px 32px 12px;
-        color: var(--stc);
-        text-shadow: var(--shadow);
-        backdrop-filter: blur(2px);
-        border-radius: 4px;
-        background: rgba(255,255,255,0.4);
-        margin-top: 32px;
-      }
-      
       /* ################ START OF MOBILE DISPLAY ################## */
       
       @media only screen and (max-width: 770px) {
@@ -151,15 +141,6 @@
           margin-left: auto;
           margin-right: auto;
         }
-      
-        div.container {
-          position: absolute;
-          top: 118px;
-          left: 20px;
-          width: calc(100vw - 40px);
-          z-index: 2;
-        }
-        div.quotes {margin-top: 10px;}
       
         .desktop {
           display: none;
@@ -236,16 +217,6 @@
           z-index: 1;
         }
       
-        div.container {
-          position: absolute;
-          top: 156px;
-          left: 50px;
-          width: calc(100vw - 100vh + 254px);
-          max-width: calc(100vw - 412px);
-          min-width: 400px;
-          z-index: 2;
-        }
-      
         #main {
           width: 280px;
           height: auto;
@@ -259,8 +230,9 @@
           border-radius: 4px;
           z-index: 2;
         }
-      
+
       }
+      
         #main h1 {
           margin-top: 40px;
           margin-bottom: 30px;
@@ -381,6 +353,46 @@
         color: white;
         text-shadow: var(--shadow);
       }
+
+      .ss {
+        height: 364px;
+        width: calc(100vw - 128px);
+        max-width: 562px;
+        backdrop-filter: blur(2px);
+        border-radius: 4px;
+        padding: 6px;
+        margin-right: 20px;
+        display: inline-block;
+        white-space: normal;
+        overflow-y: scroll;
+      }
+
+      div.lists div.list {
+        height: 64px;border-bottom: 1px solid var(--ao);
+      }
+
+      div.list span {padding: 20px;    color: var(--stc);}
+
+      div.list div.time {
+        display: inline-block;
+        font-size: 14px;
+        color: var(--ttc);
+        vertical-align: middle;
+        width: fit-content;
+     }
+
+     div.list div.time span {
+       padding: 0;
+     }
+
+     div.list span:first-of-type {
+      color: var(--ab);
+    }
+
+     div.list span:last-of-type {
+       float: right;
+       color: var(--ao);
+     }
     </style>
     <script>
       let showLogin
@@ -415,7 +427,9 @@
         <img src="./media/icon.png" style="height: 36px;" />
         <span style="display: inline; font-size: 24px; top: -8px; position: relative; margin-left: 8px;">ExamPal</span>
       </div>
-      <div class="bottom"></div>
+      <div class="bottom">
+        <div style="color: var(--bgb);padding: 12px 0;">Dashboard</div>
+      </div>
     </header>
     <div id="login" class="hidden" >
       <center>
@@ -475,16 +489,280 @@
         </div>
     </center>
     </div>
-    <div class="container">
-      <div class="welcome" style="font-size: 40px;font-variant: small-caps;color: var(--ao);">ChillaX , Let's get started !</div>
-      <div class="quotes">
-        <span class="material-icons" style="font-size: 60px;color: black;">format_quote</span><span class="quote" style="vertical-align: bottom;font-size: 28px;">Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will spend its whole life believing that it is stupid.</span>
-        <br>
-        <span class="author" style="float: right;color: var(--ao);">– Albert Einstein</span>
-      </div>
-    </div>
 
     <img id="art" src="./media/exam_2.png" />
+
+    <!--Content-->
+    <div id="content" style="backdrop-filter: blur(4px);background: rgba(255,255,255,0.4);height: 420px;width: calc(100vw - 60px);position: absolute;top: 134px;left: 30px;max-width: 640px;box-shadow: var(--tbshadow);z-index: 3;border-radius: 4px;">
+      <div class="head" style="padding: 6px 12px;background: var(--ttc);height: 32px;"><span style="color: white;text-shadow: var(--tbshadow);">Your tests</span><span class="material-icons" style="float: right;font-size: 20px;color: var(--ab);">edit</span></div>
+      <div class="myTest" style="height: 388px;overflow-x: scroll;padding: 12px;overflow-y: hidden;width: auto;white-space: nowrap;">
+        <div class="scheduled ss" >
+          <span class="head">Scheduled Tests</span>
+          <div class="lists">
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+          </div>
+        </div>
+        <div class="appointed ss" >
+          <span class="head">Appointed Tests</span>
+          <div class="lists">
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+          </div>
+        </div>
+        <div class="finished ss" >
+          <span class="head">Finished Tests</span>
+          <div class="lists">
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+            <div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div><div class="list">
+              <span class="material-icons">event</span><span class="name">MATHS-69</span>
+              <div class="time">
+                <span>MAY 14, 2021</span>
+                <br>
+                <span>05:36 PM</span>
+              </div>
+              <span class="aname">Aman Kumar</span>
+              <span class="material-icons">play_arrow</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
 
     <div style="width: 0;height: 0;border-bottom: 220px solid var(--ab);border-right: 220px solid transparent;position: fixed;bottom: 0;z-index: 5;"></div>
     <footer style="position: fixed;bottom: 0;left: 0;height: 144px; z-index: 6;">
@@ -495,10 +773,10 @@
     </footer>
 
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- The core Firebase JS SDK is always required and must be listed first 
     <script src="/__/firebase/8.6.1/firebase-app.js"></script>
     <script src="/__/firebase/8.6.1/firebase-auth.js"></script>
-    <!-- Initialize Firebase -->
+    <!-- Initialize Firebase 
     <script src="/__/firebase/init.js"></script>
 
     <script>
@@ -708,6 +986,6 @@
       function logout() {
         firebase.auth().signOut()
       }
-  </script>
+  </script>-->
   </body>
 </html>

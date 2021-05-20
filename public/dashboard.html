@@ -285,6 +285,7 @@
         input.submit,
         input.sendOTP {
           color: white;
+          padding: 0;
           background: var(--ab);
           box-shadow: var(--shadow);
           /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
@@ -373,13 +374,6 @@
 
       div.list span {padding: 20px;    color: var(--stc);}
 
-      div.list div.time {
-        display: inline-block;
-        font-size: 14px;
-        color: var(--ttc);
-        vertical-align: middle;
-        width: fit-content;
-     }
 
      div.list div.time span {
        padding: 0;
@@ -393,6 +387,18 @@
        float: right;
        color: var(--ao);
      }
+     
+     div.list div.time {
+       display: inline-block;
+       font-size: 12px;
+       color: var(--ttc);
+       vertical-align: middle;
+       width: fit-content;
+    }
+
+    div.list div.time span {
+      color: var(--ttc);
+    }
     </style>
     <script>
       let showLogin
@@ -415,20 +421,28 @@
               document.querySelector('#login').classList.remove('hidden')
             } else {document.querySelector('#login').classList.add('hidden')}
           }
+
+          toggleMyProfile = () => {
+            document.querySelector('#myprofile').classList.toggle('hidden')
+          }
         }
     </script>
+    <link rel="stylesheet" href="./dashboard.css" />
+    <script src="./chart.js" ></script>
   </head>
   <body>
     <header>
       <div class="top" >
         <div class="login fr" style="color: #1a73e8;" onclick="showLogin()">Login</div>
+        <div class="login logout fr hidden" style="color: #1a73e8; margin: 0;" onclick="logout()">LogOut</div>
         <div class="language fr" style="border: 1px solid #dadce0; border-radius: 4px;"><div class="desktop">English </span><span class="material-icons">arrow_drop_down</span></div><div class="mobile">En</div></div>
         <div class="search fr"><span class="material-icons">search</span><input type="text" placeholder="Search"/></div>
         <img src="./media/icon.png" style="height: 36px;" />
         <span style="display: inline; font-size: 24px; top: -8px; position: relative; margin-left: 8px;">ExamPal</span>
       </div>
-      <div class="bottom">
-        <div style="color: var(--bgb);padding: 12px 0;">Dashboard</div>
+      <div class="bottom" style="color: var(--bgb);">
+        <div style="padding: 12px 0; display: inline-block;">Dashboard</div>
+        <span class="material-icons logout fr hidden" onclick="toggleMyProfile()" style="padding: 12px 0;">account_circle</span>
       </div>
     </header>
     <div id="login" class="hidden" >
@@ -490,7 +504,22 @@
     </center>
     </div>
 
+    <div id="myprofile" class="hidden">
+      <span class="material-icons" onclick="toggleMyProfile()" style="position: absolute;right: 12px;float: right;color: white;">close</span>
+      <center>
+        <img src="./media/avatar.png">    
+        <input type="text" class="name">
+        <input type="number" class="phone">
+        <input type="email" class="email">
+        <input type="submit" style="background: var(--ab);color: var(--bgh);">
+      </center>
+    </div>
+
     <img id="art" src="./media/exam_2.png" />
+
+    <div id="charts">
+      <div id="curve_chart" style="width: 872px; height: 420px"></div>
+    </div>
 
     <!--Content-->
     <div id="content" style="backdrop-filter: blur(4px);background: rgba(255,255,255,0.4);height: 420px;width: calc(100vw - 60px);position: absolute;top: 134px;left: 30px;max-width: 640px;box-shadow: var(--tbshadow);z-index: 3;border-radius: 4px;">
@@ -773,13 +802,15 @@
     </footer>
 
 
-    <!-- The core Firebase JS SDK is always required and must be listed first 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/8.6.1/firebase-app.js"></script>
     <script src="/__/firebase/8.6.1/firebase-auth.js"></script>
-    <!-- Initialize Firebase 
+    <script src="/__/firebase/8.6.1/firebase-database.js"></script>
+    <!-- Initialize Firebase  -->
     <script src="/__/firebase/init.js"></script>
 
-    <script>
+    <script src="./dashboard.js" ></script>
+<!--<script>
       // Check Auth Before Proceeding
       firebase.auth().onAuthStateChanged(function(user) {
           if (user) {

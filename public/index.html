@@ -509,14 +509,16 @@
               console.log(user)
               if (user.uid.length > 0) {
                   alert('Logged in !')
-                  //window.location = './home.html'               // Disabled for production
-                  //st()
+                  window.location = './dashboard.html'               // Disabled for production
+                  document.querySelector('div.top div.login:first-of-type').classList.add('hidden')
+                  document.querySelector('div.top div.logout').classList.remove('hidden')
               } else {document.querySelector('#login').classList.remove('hidden')}
               //window.location = './index.html'
           } else {
               // User is signed out.
               console.log('not logged')
               localStorage.clear()
+              document.querySelector('#login').classList.remove('hidden')
           }
       });
 

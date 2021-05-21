@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to ExamPal !</title>
+    <link type="text/css" type="stylesheet" href="template.css">
+    <style>
+      :root {
+        --ab: #039be5;
+        --ao: #ffa100;
+        --bg: #ECEFF1;
+        --bgb: #f1f3f4;
+        --bgh: #e8eaed;
+        --ptc: #202124;
+        --stc: #4e5257;
+        --ttc: #bdc1c6;
+        --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        --tbshadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+        --trans: width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Regular.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Medium.ttf);
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: google-sans;
+        src: url(./assets/ProductSans-Bold.ttf);
+        font-weight: bolder;
+      }
+      
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Regular.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Medium.ttf);
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: Roboto;
+        src: url(./assets/Roboto-Bold.ttf);
+        font-weight: bolder;
+      }
+      
+      /* fallback */
+      @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(./assets/material-icons.woff2) format('woff2');
+      }
+      
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+        vertical-align: middle;
+      }
+      
+      .hidden {display: none;}
+      .fr { float: right;}
+      
+      header {position: fixed;z-index: 4;}
+      header div.top {top: 0; left: 0;background: white; width: 100vw; height: 48px; }
+      header div div {height: 36px; padding: 6px 16px; font-size: 18px;}
+      header div.bottom {top: 48px; left: 0; background: var(--ab); width: 100vw; height: 48px; padding: 0 24px; box-shadow: var(--shadow);}
+      
+
+      /* ################ START OF MOBILE DISPLAY ################## */
+      
+      @media only screen and (max-width: 770px) {
+        body { background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+      
+        header div div {margin: 0; }
+        header div.top {padding: 6px 12px;}
+      
+        div.language {
+          width: 36px;
+          padding: 6px;
+        }
+      
+        header div.top div.search {
+          width: 36px;
+          right: 143px;
+          padding: 0 6px;
+        }
+      
+        header div.top div.search span {
+          padding: 6px 0;
+        }
+        
+        div.search input {
+          display: none;
+        }
+        
+        header div.top div.search:hover {
+          background-color: white;
+          box-shadow: var(--tbshadow);
+          color: var(--ptc);
+          width: calc(100vw - 36px);
+          right: 18px;
+        }
+      
+        header div.top div.search:hover input {
+          display: inline;
+        }
+      
+        #art {
+          position: fixed;
+          top: calc(50vh - 256px);
+          transform: rotate(-25deg);
+          filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3)) opacity(0.5);
+          z-index: 1;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      
+        div.container {
+          position: absolute;
+          top: 118px;
+          left: 20px;
+          width: calc(100vw - 40px);
+          z-index: 2;
+        }
+        div.quotes {margin-top: 10px;}
+      
+        .desktop {
+          display: none;
+        }
+        .mobile {
+          display: contents;
+        }
+      
+        #main {
+          width: 280px;
+          height: auto;
+          background: #ffffff;
+          position: fixed;
+          top: calc((100vh - 532px)/2);
+          left: calc(50vw - 140px);
+          transition: height 0.5s ease-in-out;
+          overflow-y: hidden;
+          box-shadow: var(--shadow);
+          border-radius: 4px;
+          z-index: 7;
+        }
+      
+      }
+      /* ################ END OF MOBILE DISPLAY ################## */
+      
+      
+      /* ################# START OF DESKTOP DISPLAY ################ */
+      
+      @media only screen and (min-width: 770px) and (min-height: 360px) {
+        body { min-width: 800px; min-height: 630px; background: var(--bg); color: var(--ptc); font-family: google-sans, Roboto, Helvetica, Arial, sans-serif;}
+      
+        header div div { margin-right: 20px;}
+        header div.top {padding: 6px 24px;}
+        header div.top div.search {
+          right: 262px;
+        }
+        div.search input {
+          display: inline;
+        }
+      
+        header div.top div.search {
+          padding: 0;
+          width: 266px;
+        }
+      
+        header div.top div.search span {padding-left: 6px;}
+      
+        header div.top div.search:hover {
+          background-color: var(--bgh);
+          color: var(--ptc);
+        }
+      
+        header div.top div.search:focus-within {
+          width: calc(100vw - 370px);
+        }
+      
+        .mobile {display: none;}
+        .desktop {display: contents;}
+      
+        div.top div.login {transition: var(--trans);}
+      
+        div.top div.login:hover {
+          background-color: #e8f0fe;
+          box-shadow: var(--tbshadow);
+        }
+      
+      
+        #art {
+          position: fixed;
+          top: calc(168px + ((100vh - 778px)/2));
+          right: calc(280px + ((100vh - 778px)/2));
+          transform: rotate(-25deg);
+          filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3)) opacity(0.5);
+          z-index: 1;
+        }
+      
+        div.container {
+          position: absolute;
+          top: 156px;
+          left: 50px;
+          width: calc(100vw - 100vh + 254px);
+          max-width: calc(100vw - 412px);
+          min-width: 400px;
+          z-index: 2;
+        }
+      
+        #main {
+          width: 280px;
+          height: auto;
+          background: #ffffff;
+          position: absolute;
+          top: 154px;
+          right: 32px;
+          transition: height 0.5s ease-in-out;
+          overflow-y: hidden;
+          box-shadow: var(--shadow);
+          border-radius: 4px;
+          z-index: 2;
+        }
+      
+      }
+        #main h1 {
+          margin-top: 40px;
+          margin-bottom: 30px;
+          font-weight: bolder;
+        }
+      
+        #main div.login form {
+          width: 240px;
+        }
+      
+        label {
+          display: block;
+          font-size: 0.8em;
+          font-weight: 300;
+          color: #999999;
+          margin-left: 10px;
+          float: left;
+        }
+      
+        input {
+          font-size: 0.9em;
+          padding-left: 8px;
+          display: block;
+          position: relative;
+          height: 40px;
+          border: 0;
+          border-radius: 4px;
+          color: var(--stc);
+          width: 220px;
+          outline: none;
+          background-color: var(--bgb);
+          transition: var(--trans);
+          font-family: Roboto, sans-serif;
+        }
+      
+        #main input:focus {
+          background-color: white;
+          box-shadow: var(--tbshadow);
+          color: var(--ptc);
+        }
+        #main input:hover {
+          background-color: var(--bgh);
+          color: var(--ptc);
+        }
+      
+        input::placeholder {
+          color: var(--ttc);
+        }
+      
+        input.submit,
+        input.sendOTP {
+          color: white;
+          background: var(--ab);
+          box-shadow: var(--shadow);
+          /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
+        }
+      
+        form span.forget {
+          float: right;
+          color: #aaaaaa;
+          margin-top: 8px;
+          font-size: 0.7em;
+        }
+      
+        div.login span.alt,
+        div.login span.toggle {
+          position: relative;
+          font-size: 0.8em;
+          color: var(--ao);
+          bottom: 15px;
+        }
+      
+        div.imgs {
+          position: relative;
+          top: 5px;
+          height: 45px;
+          width: 145px;
+        }
+      
+        div.imgs img {
+          display: inline;
+          height: 40px;
+          width: 40px;
+          margin: 2.5px;
+        }
+      
+      header div.top div.search {
+        position: fixed;
+        background-color: var(--bgb);
+        transition: var(--trans);
+        border-radius: 4px;
+        z-index: 7;
+      }
+      
+      div.search input {
+        height: 36px;
+        text-indent: 8px;
+        background: none;
+        transition: none;
+      }
+      
+      header div.top div.search:focus-within {
+        background-color: white;
+        box-shadow: var(--tbshadow);
+        color: var(--ptc);
+      }
+      
+      footer span {
+        display: block;
+        height: 36px;
+        padding: 8px 8px 8px 18px;
+        color: var(--ttc);
+        text-shadow: none;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+      }
+      
+      footer span:hover {
+        color: white;
+        text-shadow: var(--shadow);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top" >
+        <div class="login fr" style="color: #1a73e8;">Aman Kumar</div>
+        <div class="language fr" style="border: 1px solid #dadce0; border-radius: 4px;"><div class="desktop">English </span><span class="material-icons">arrow_drop_down</span></div><div class="mobile">En</div></div>
+        <div class="search fr"><span class="material-icons">search</span><input type="text" placeholder="Search"/></div>
+        <img src="./media/icon.png" style="height: 36px;" />
+        <span style="display: inline; font-size: 24px; top: -8px; position: relative; margin-left: 8px;">ExamPal</span>
+      </div>
+      <div class="bottom"></div>
+    </header>
+    <br/><br/><br/><br/>
+    <div class="display">
+      <div id="qna">
+        <div class="card1 cc">
+          <span>Q1</span><br/>
+          <div class="options">
+            <div class="r1">
+              <span class="material-icons">
+                done
+              </span>
+              <span class="material-icons">
+                done
+              </span>
+            </div>
+            <div class="r2">
+              <span class="material-icons">
+                done
+              </span>
+              <span class="material-icons">
+                done
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card2">
+          
+        </div>
+      </div>
+
+
+      <div class="q_no">
+        <div>
+          <legend >Question Tab</legend>
+          <div>
+            <span style="display: inline-block;">1</span>
+            <span style="display: inline-block;">2</span>
+            <span style="display: inline-block;">3</span>
+            <span style="display: inline-block;">4</span>
+            <span style="display: inline-block;">5</span>
+          </div>
+          <div>
+            <span style="display: inline-block;">6</span>
+            <span style="display: inline-block;">7</span>
+            <span style="display: inline-block;">8</span>
+            <span style="display: inline-block;">9</span>
+            <span style="display: inline-block;">10</span>
+          </div>
+          <div>
+            <span style="display: inline-block;">11</span>
+            <span style="display: inline-block;">12</span>
+            <span style="display: inline-block;">13</span>
+            <span style="display: inline-block;">14</span>
+            <span style="display: inline-block;">15</span>
+          </div>
+          <div>
+            <span style="display: inline-block;">16</span>
+            <span style="display: inline-block;">17</span>
+            <span style="display: inline-block;">18</span>
+            <span style="display: inline-block;">19</span>
+            <span style="display: inline-block;">20</span>
+          </div>
+          <div>
+            <span style="display: inline-block;">21</span>
+            <span style="display: inline-block;">22</span>
+            <span style="display: inline-block;">23</span>
+            <span style="display: inline-block;">24</span>
+            <span style="display: inline-block;">25</span>
+          </div>
+          <div>
+            <span style="display: inline-block;">26</span>
+            <span style="display: inline-block;">27</span>
+            <span style="display: inline-block;">28</span>
+            <span style="display: inline-block;">29</span>
+            <span style="display: inline-block;">30</span>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <img id="art" src="./media/exam_2.png" />
+
+    <div style="width: 0;height: 0;border-bottom: 220px solid var(--ab);border-right: 220px solid transparent;position: fixed;bottom: 0;z-index: 5;"></div>
+    <footer style="position: fixed;bottom: 0;left: 0;height: 144px; z-index: 6;">
+      <span>About</span>
+      <span>Site Map</span>
+      <span onclick="window.location = './contact.html'">Contact Us</span>
+      <span>Copyright 2021</span>
+    </footer>
+
+  </body>
+</html>

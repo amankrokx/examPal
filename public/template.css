@@ -1,0 +1,59 @@
+:root {
+    --ab: #039be5;
+    --ao: #ffa100;
+    --bg: #ECEFF1;
+    --bgb: #f1f3f4;
+    --bgh: #e8eaed;
+    --ptc: #202124;
+    --stc: #4e5257;
+    --ttc: #bdc1c6;
+    --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --tbshadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+    --trans: width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+
+div.display{
+    display: flex;
+    box-shadow: 5px;
+    background-color: var(--bgb);
+    z-index: 40px;
+    position: absolute;
+    top: 300px;
+    left: 0;
+}
+
+div.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+  }
+
+div.qna{
+    display: inline-block;
+}
+
+div.cc{
+    display: block;
+    position: absolute;
+    height: min-content;
+    width: 400px;
+    max-width: 450px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    top: 100px;
+    left: 0;
+
+}
+

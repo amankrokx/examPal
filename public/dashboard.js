@@ -20,6 +20,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.querySelector('div.top div.login:first-of-type').classList.add('hidden')
             document.querySelector('div.top div.logout').classList.remove('hidden')
             document.querySelector('div.bottom span.logout').classList.remove('hidden')
+            checkDetails()
         } else {document.querySelector('#login').classList.remove('hidden')}
         //
     } else {
@@ -29,6 +30,72 @@ firebase.auth().onAuthStateChanged(function(user) {
         window.location = './index.html'
     }
 });
+
+let checkDetails = () => {
+    if(myself.displayName) {document.querySelector('#myprofile input.name').value = myself.displayName}
+    else {document.querySelector('#myprofile input.name').classList.add('empty')}
+    if(myself.email) {document.querySelector('#myprofile input.email').value = myself.email}
+    else {document.querySelector('#myprofile input.email').classList.add('empty')}
+    if(myself.phoneNumber) {document.querySelector('#myprofile input.phone').value = myself.phoneNumber}
+    else {document.querySelector('#myprofile input.email').classList.add('empty')}
+    if(myself.photoURL) {document.querySelector('#myprofile img').src = myself.photoURL}
+    else {document.querySelector('#myprofile img').classList.add('empty')}
+}
+
+let finaliseProfile = (pUrl) => {
+    let curr = firebase.auth().currentUser;
+    
+        curr.updateProfile({
+            displayName: document.querySelector('#myprofile input.name').value,
+            photoURL: pUrl
+            }).then(function() {
+            // Update successful.
+            curr.updateEmail(document.querySelector('#myprofile input.email').value).then(function() {
+                // Update successful.
+                alert('Values Updated !')
+                window.location.reload
+              }).catch(function(error) {
+                // An error happened.
+                console.log(error)
+            });
+        }).catch(function(error) {
+            // An error happened.
+            console.log(error)
+        });
+}
+
+let updateProfile = () => {
+    if (document.querySelector('#myprofile input.name').value && document.querySelector('#myprofile input.email').value) {
+        let filelist = document.querySelector('#myprofile input.photo').files
+        console.log(filelist)
+        if(filelist.length > 0) {
+            let fileName = document.querySelector('#myprofile input.photo').value;
+            let extension = fileName.split('.').pop();
+            console.log(extension)
+            let storageRef = firebase.storage().ref()
+            let photoRef = storageRef.child('photos/'+myself.uid+'.'+extension)
+
+            photoRef.put(filelist[0]).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+              });
+
+              photoRef.getDownloadURL()
+              .then((url) => {
+                // Insert url into an <img> tag to "download"
+                finaliseProfile(url)
+                console.log(url)
+            })
+            .catch((error) => {
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                finaliseProfile(null)
+                console.log(error)
+              });
+
+        } else {finaliseProfile(null)}
+
+    }
+}
 
 // Grab Login...
 document.querySelector('#main form.login input.submit').onclick = function(e) {

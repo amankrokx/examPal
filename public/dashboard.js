@@ -1,4 +1,4 @@
-let myself
+let myself, tests = [], startAll
 
 let database = firebase.database()
 
@@ -21,6 +21,8 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.querySelector('div.top div.logout').classList.remove('hidden')
             document.querySelector('div.bottom span.logout').classList.remove('hidden')
             checkDetails()
+            startAll()
+
         } else {document.querySelector('#login').classList.remove('hidden')}
         //
     } else {
@@ -97,195 +99,10 @@ let updateProfile = () => {
     }
 }
 
-// Grab Login...
-document.querySelector('#main form.login input.submit').onclick = function(e) {
-    //e.preventDefault()
-    let userid = document.querySelector('#main form.login input.email').value
-    let password = document.querySelector('#main form.login input.password').value
-    //st()
-    firebase.auth().signInWithEmailAndPassword(userid, password).catch(function(error) {
-        // Handle Errors here. 
-        //ht()
-        console.error(error)
-        alert(error.message)
-    });
-}
-
-// Grab Signup...
-document.querySelector('#main form.signup input.submit').onclick = function(e) {
-    let userid = document.querySelector('#main form.signup input.email').value
-    let password = document.querySelector('#main form.signup input.password').value
-    //st()
-    firebase.auth().createUserWithEmailAndPassword(userid, password).catch(function(error) {
-        // Handle Errors here.
-        //ht()
-        var errorMessage = error.message
-        console.error(errorMessage, error)
-    });
-}
-
-// Create a Recaptcha verifier instance globally
-// Calls submitPhoneNumberAuth() when the captcha is verified
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptcha-container", {
-        size: "invisible",
-        callback: function(response) {
-            submitPhoneNumberAuth();
-        },
-        'expired-callback': function() {
-            // Response expired. Ask user to solve reCAPTCHA again.
-            // ...
-            alert('ReCaptcha Loading Failed')
-        }
-
-    }
-);
-// This function runs when the 'sign-in-button' is clicked
-// Takes the value from the 'phoneNumber' input and sends SMS to that phone number
-function submitPhoneNumberAuth() {
-    let phone = document.querySelector('#main form.signup_phone input.phone').value
-    var appVerifier = window.recaptchaVerifier;
-    //st()
-    firebase
-        .auth()
-        .signInWithPhoneNumber(phone, appVerifier)
-        .then(function(confirmationResult) {
-            window.confirmationResult = confirmationResult;
-            //ht()
-            alert('OTP Sent Successfully !')
-            document.querySelector('form.signup_phone input:last-of-type').classList.add('submit')
-        })
-        .catch(function(error) {
-            //ht()
-            console.log(error);
-
-            grecaptcha.reset(window.recaptchaWidgetId);
-
-            // Or, if you haven't stored the widget ID:
-            window.recaptchaVerifier.render().then(function(widgetId) {
-                grecaptcha.reset(widgetId);
-            })
-
-            alert(error.message)
-        });
-}
-
-// This function runs when the 'confirm-code' button is clicked
-// Takes the value from the 'code' input and submits the code to verify the phone number
-// Return a user object if the authentication was successful, and auth is complete
-function submitPhoneNumberAuthCode() {
-    let code = document.querySelector('#main form.signup_phone input.otp').value
-    if (code.length < 5) {
-        alert('Invalid OTP')
-        return
-    }
-    //st()
-    confirmationResult.confirm(code).then(function(result) {
-            //ht()
-            var user = result.user;
-            console.log(user);
-        }).catch(function(error) {
-            console.log(error);
-            //ht()
-
-            alert('Wrong OTP or Network Issue')
-        });
-}
-
-//Google auth
-let Gprovider = new firebase.auth.GoogleAuthProvider();
-
-function googleLogin() {
-firebase.auth()
-    .signInWithPopup(Gprovider)
-    .then((result) => {
-    var credential = result.credential;
-
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // ...
-    }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-    });
-}
-
-//Facebook Auth
-let Fprovider = new firebase.auth.FacebookAuthProvider();
-
-function facebookLogin() {
-
-firebase
-    .auth()
-    .signInWithPopup(Fprovider)
-    .then((result) => {
-    console.log(result)
-    var credential = result.credential;
-
-    // The signed-in user info.
-    var user = result.user;
-
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var accessToken = credential.accessToken;
-
-    // ...
-    })
-    .catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-
-    // ...
-    });
-}
-
-var Tprovider = new firebase.auth.TwitterAuthProvider();
-
-function twitterLogin() {
-firebase
-    .auth()
-    .signInWithPopup(Tprovider)
-    .then((result) => {
-    /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
-
-    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-    // You can use these server side with your app's credentials to access the Twitter API.
-    var token = credential.accessToken;
-    var secret = credential.secret;
-
-    // The signed-in user info.
-    var user = result.user;
-    // ...
-    }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-    });
-
-}
-
 function logout() {
-firebase.auth().signOut()
+    firebase.auth().signOut()
 }
-
+/*
 //      CHARTS...
 google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -321,4 +138,32 @@ google.charts.load('current', {'packages':['corechart']});
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
     chart.draw(data, options);
+}*/
+
+// Grab tests...
+
+startAll = () => {
+    // Populate test...
+    database.ref('users/'+myself.uid+'/tests').on('child_added', (data) => { 
+        tests[data.key]= data.val()
+        if(data.key.length > 0) {
+            let temp = data.val()
+            if (Object.keys(temp).length > 0 && temp != 'none') {
+                document.querySelector('div.'+data.key+' div.lists h3.h').classList.add('hidden')
+                for (prop in temp) {
+                    document.querySelector('div.'+data.key+' div.lists').innerHTML += '<div class="list"><span class="material-icons">event</span><span class="name">'+prop+'</span><div class="time"><span>MAY 14, 2021</span><br><span>05:36 PM</span></div><span class="aname">'+temp[prop].Author+'</span><span class="material-icons">play_arrow</span></div>'
+                }
+            } else {
+                document.querySelector('div.'+data.key+' div.lists').innerHTML = '<center><h3>No Tests ! Enjoy</h3></center>'
+            }
+
+        }
+    })
+
+    // Check if Teacher...
+    database.ref('users/'+myself.uid+'/type').once('value').then((snapshot) => {
+        myself.designation = snapshot.val()
+        if(myself.designation == 'teacher') {document.querySelector('span.con').innerHTML = 'Create Test'}
+        else if(myself.designation == 'student') {document.querySelector('span.con').innerHTML = 'Join Test'}
+      })
 }

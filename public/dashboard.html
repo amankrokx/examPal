@@ -357,8 +357,8 @@
 
       .ss {
         height: 364px;
-        width: calc(100vw - 128px);
-        max-width: 562px;
+        /*width: calc(100vw - 128px);*/
+        width: 562px;
         backdrop-filter: blur(2px);
         border-radius: 4px;
         padding: 6px;
@@ -404,31 +404,12 @@
       let showLogin
       window.onload = () => {
 
-          let items = document.getElementsByTagName('form')
-          toggle.onclick = () => {
-              items[0].classList.toggle('hidden')
-              items[1].classList.toggle('hidden')
-          }
-          document.querySelectorAll('form span.toggle').forEach(e => {
-              e.onclick = () => {
-                  items[1].classList.toggle('hidden')
-                  items[3].classList.toggle('hidden')
-              }
-          });
-
-          showLogin = () => {
-            if(document.querySelector('#login').classList.contains('hidden')) {
-              document.querySelector('#login').classList.remove('hidden')
-            } else {document.querySelector('#login').classList.add('hidden')}
-          }
-
           toggleMyProfile = () => {
             document.querySelector('#myprofile').classList.toggle('hidden')
           }
         }
     </script>
     <link rel="stylesheet" href="./dashboard.css" />
-    <script src="./chart.js" ></script>
   </head>
   <body>
     <header>
@@ -442,67 +423,10 @@
       </div>
       <div class="bottom" style="color: var(--bgb);">
         <div style="padding: 12px 0; display: inline-block;">Dashboard</div>
+        <div style="display: inline-block;background: rgba(255,255,255,0.2);border: 1px solid var(--bgh);border-radius: 4px;"><span class="con">WTF are you ?</span><span class="material-icons" style="/* vertical-align: text-bottom; */position: relative;top: -2px;">add</span><div></div></div>
         <span class="material-icons logout fr hidden" onclick="toggleMyProfile()" style="padding: 12px 0;">account_circle</span>
       </div>
     </header>
-    <div id="login" class="hidden" >
-      <center>
-        <div id="main">
-            <div class="login">
-
-                <h1>Login</h1>
-
-                <form class="login" onsubmit="return false">
-                    <label>Email ID</label>
-                    <input type="email" class="email" placeholder="someone@example.com" required /><br />
-                    <label>Password</label>
-                    <input type="password" class="password" placeholder="PassworD" required />
-                    <span class="forget">Forget Password ?</span><br /><br />
-                    <input type="submit" class="submit" value="Login" />
-                </form>
-                <form class="signup hidden" onsubmit="return false">
-                    <label>Email ID</label>
-                    <input type="email" class="email" placeholder="someone@example.com" required /><br />
-                    <label>Password</label>
-                    <input type="password" class="password" placeholder="PassworD" required /><br />
-                    <span class="forget toggle">Use Phone Number</span><br />
-                    <input type="submit" class="submit" value="Signup" />
-                </form>
-                <form class="finish_email hidden" onsubmit="return false">
-                    <p>Verification Email Sent to</p>
-                    <h3><small>someone@example.com</small></h3><br />
-                    <p><small><small>Make sure to check your Spam folder</small></small>
-                    </p><br />
-                    <input type="submit" class="submit" value="Finish" />
-                </form>
-                <form class="signup_phone hidden" onsubmit="return false">
-                    <label>Phone <sup>*</sup></label>
-                    <input type="tel" class="phone" placeholder="Ex  +91 123 456 7890" maxlength="13" minlength="12" required /><br />
-                    <div id="recaptcha-container"></div>
-                    <input type="submit" class="sendOTP" onclick="submitPhoneNumberAuth()" value="Send OTP" /><br />
-                    <label>Enter OTP</label>
-                    <input type="number" class="otp" maxlength="6" minlength="6" placeholder="Ex  123456" /><br />
-                    <p><small><small>Allow upto 1 minute for SMS to arrive</small></small>
-                    </p><br />
-                    <span class="forget toggle">Use Email Instead</span><br />
-                    <input type="submit" class="" onclick="submitPhoneNumberAuthCode()" value="Verify" />
-                </form>
-                <br /><br /><br />
-
-
-                <span class="alt">Or Continue Using</span>
-                <div class="imgs">
-                    <img async src="./media/fb.png" loading="lazy" class="fb" onclick="facebookLogin()">
-                    <img async src="./media/twitter.png" loading="lazy" class="twitter" onclick="twitterLogin()">
-                    <img async src="./media/google.png" loading="lazy" class="google" onclick="googleLogin()">
-                </div>
-                <br /><br /><br /><br />
-                <span class="toggle" id="toggle">Signup with Email</span>
-
-            </div>
-        </div>
-    </center>
-    </div>
 
     <div id="myprofile" class="hidden">
       <span class="material-icons" onclick="toggleMyProfile()" style="position: absolute;right: 12px;float: right;color: white;">close</span>
@@ -518,276 +442,30 @@
 
     <img id="art" src="./media/exam_2.png" />
 
-    <div id="charts">
+    <!--<div id="charts">
       <div id="curve_chart" style="width: 872px; height: 420px"></div>
-    </div>
+    </div>-->
 
     <!--Content-->
     <div id="content" style="backdrop-filter: blur(4px);background: rgba(255,255,255,0.4);height: 420px;width: calc(100vw - 60px);position: absolute;top: 134px;left: 30px;max-width: 640px;box-shadow: var(--tbshadow);z-index: 3;border-radius: 4px;">
       <div class="head" style="padding: 6px 12px;background: var(--ttc);height: 32px;"><span style="color: white;text-shadow: var(--tbshadow);">Your tests</span><span class="material-icons" style="float: right;font-size: 20px;color: var(--ab);">edit</span></div>
       <div class="myTest" style="height: 388px;overflow-x: scroll;padding: 12px;overflow-y: hidden;width: auto;white-space: nowrap;">
-        <div class="scheduled ss" >
-          <span class="head">Scheduled Tests</span>
-          <div class="lists">
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
-          </div>
-        </div>
         <div class="appointed ss" >
           <span class="head">Appointed Tests</span>
           <div class="lists">
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
+            <center><h3 class="h">Empty !</h3></center>
+          </div>
+        </div>
+        <div class="scheduled ss" >
+          <span class="head">Scheduled Tests</span>
+          <div class="lists">
+            <center><h3 class="h">Empty !</h3></center>
           </div>
         </div>
         <div class="finished ss" >
           <span class="head">Finished Tests</span>
           <div class="lists">
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
-            <div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div><div class="list">
-              <span class="material-icons">event</span><span class="name">MATHS-69</span>
-              <div class="time">
-                <span>MAY 14, 2021</span>
-                <br>
-                <span>05:36 PM</span>
-              </div>
-              <span class="aname">Aman Kumar</span>
-              <span class="material-icons">play_arrow</span>
-            </div>
+            <center><h3 class="h">Empty !</h3></center>
           </div>
         </div>
     </div>

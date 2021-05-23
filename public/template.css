@@ -44,8 +44,9 @@ div.cc{
     background-color: rgba(255,255,255,0.24);
     backdrop-filter: blur(3px);
     width: 500px;
-    white-space: normal;
-    overflow-y: scroll;
+    height: inherit;
+    white-space: nowrap;
+    overflow-y: hidden;
 }
 
 div.options{
@@ -53,13 +54,27 @@ div.options{
   text-align: center;
 }
 
-.rr{
-  display: inline-block;
-  width: 500px;
+.submit{
+  width: 165px;
+  border-radius: 4px;
+  margin: 5px;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s ease-in;
 }
 
-.submit{
-  
+.submit:hover{
+  text-shadow: var(--ptc);
+  transition: 0.2s;
+  font-size: 20px;
+}
+
+.rr{
+  display: flex;
+  width: 500px;
+  text-align: center;
+  font-size: 20px;
 }
 
 
@@ -68,50 +83,49 @@ div.q_no{
   right: 10px;
   top: 132px;
   height: 500px;
-  width: 30%;
-  border: 2px var(--stc);
+  width: 25%;
+  box-shadow: var(--shadow);
+  z-index: 9999;
 }
 
 div.numbers{
-  display: flex;
-  border: 2px solid var(--stc);
-  height: 20px;
-  width: 20px;
   text-align: center;
   margin: 2px;
+  padding: 5x;
   white-space: nowrap;
-  background-color: var(--ab);
+  border: 2px solid var(--ptc);
 }
 
 div.que span{
+    position: inherit;
     border: 2px solid var(--stc);
     height: 20px;
-    width: 20px;
+    width: auto;
     text-align: center;
     font-size: 30px;
     text-align: center;
-    transition: 0.2s;
+    color: inherit;
+    background-color: inherit;
+    transition: color 0.2s ease, background-color 0.2s ease-in-out;
 }
 
+
 div.que span:hover{
-  box-shadow: var(--shadow);
-  color: var(--bgh);
-  background-color: var(--trans);
-  transition: 0.2s;
+  background-color: var(--ab);
+  color: var(--bgb);
+  box-shadow: var(--tbshadow);
 }
 
 
 div.bb{
-  display:inline;
-  background-color: var(--ao);
+  display: inline-block;
   backdrop-filter: blur(1px);
-  border: 1px solid var(--stc);
-  box-shadow: var(--tbshadow);
-  z-index: 10px;
   font: bold;
   color: var(--ptc);
   margin: 5px;
   padding: 2px;
+  position: relative;
 }
+
 
 

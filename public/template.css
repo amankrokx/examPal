@@ -15,25 +15,26 @@
 
 div.display{
     box-shadow: 5px;
-    background-color: var(--bgb);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
 }
 
 div.qna{
     margin: 2px;
     padding: 10px;
     border: 3px solid var(--ptc);
-    background-color: var(--bgb);
+    background-color: rgba(255,255,255,0.24);
     border-radius: 0px;
+    margin-right: 20px;
     position: fixed;
     left: 20px;
     top: 132px;
     height: 500px;
     width: 70%;
-    z-index: 999;
+    z-index: 6;
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
+    backdrop-filter: blur(3px);
 }
 
 div.cc{
@@ -43,10 +44,17 @@ div.cc{
     box-shadow: var(--shadow);
     background-color: rgba(255,255,255,0.24);
     backdrop-filter: blur(3px);
+<<<<<<< HEAD
     width: 500px;
     height: inherit;
     white-space: nowrap;
     overflow-y: hidden;
+=======
+    width: 600px;
+    white-space: normal;
+    overflow-y: scroll;
+    overflow-x: hidden;
+>>>>>>> f385a59da4e367038bdfb916a4623d3d8f627cd1
 }
 
 div.options{
@@ -104,16 +112,26 @@ div.que span{
     text-align: center;
     font-size: 30px;
     text-align: center;
+<<<<<<< HEAD
     color: inherit;
     background-color: inherit;
     transition: color 0.2s ease, background-color 0.2s ease-in-out;
+=======
+    transition: color 0.2s ease-in, background-color 0.2s ease-in;
+>>>>>>> f385a59da4e367038bdfb916a4623d3d8f627cd1
 }
 
 
 div.que span:hover{
+<<<<<<< HEAD
   background-color: var(--ab);
   color: var(--bgb);
   box-shadow: var(--tbshadow);
+=======
+  box-shadow: var(--shadow);
+  color: var(--bgh);
+  background-color: var(--ab);
+>>>>>>> f385a59da4e367038bdfb916a4623d3d8f627cd1
 }
 
 

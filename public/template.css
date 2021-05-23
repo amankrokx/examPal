@@ -92,14 +92,13 @@ div.que span{
     text-align: center;
     font-size: 30px;
     text-align: center;
-    transition: 0.2s;
+    transition: color 0.2s ease-in, background-color 0.2s ease-in;
 }
 
 div.que span:hover{
   box-shadow: var(--shadow);
   color: var(--bgh);
-  background-color: var(--trans);
-  transition: 0.2s;
+  background-color: var(--ab);
 }
 
 

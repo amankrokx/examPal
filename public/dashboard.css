@@ -20,11 +20,17 @@
     #myprofile {
         right: 32px;
     }
+    #content {
+        position: absolute;top: 134px;left: calc(50vw - 320px);
+    }
 }
 
 @media only screen and (max-width: 770px) {
     #myprofile {
         right: calc(50vw - 140px);
+    }
+    #content {
+        position: absolute;top: 134px;left: calc((100vw - 315px)/2);
     }
 }
 
